@@ -1,0 +1,25 @@
+.albums-list {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 35%;
+  text-align: center;
+}
+
+.add-album {
+  margin-bottom: 30px;
+}
+
+.albums-list .info {
+  color: #909090;
+  font-size: 2vw;
+}
+
+.add-album .form-control {
+  display: inline;
+  width: 65%;
+}
+
+.add-album .btn-primary {
+  margin-left: 4%;
+  width: 31%;
+}
