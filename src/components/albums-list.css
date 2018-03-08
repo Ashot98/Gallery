@@ -5,21 +5,26 @@
   text-align: center;
 }
 
-.add-album {
-  margin-bottom: 30px;
-}
-
 .albums-list .info {
   color: #909090;
   font-size: 2vw;
 }
 
-.add-album .form-control {
-  display: inline;
-  width: 65%;
+.unique-error {
+  color: #a94442;
+  text-align: left;
+  font-size: 18px;
 }
 
+.add-album .form-group {
+  display: inline-block;
+  width: 65%;
+}
 .add-album .btn-primary {
   margin-left: 4%;
   width: 31%;
+}
+
+.albums-list .content {
+  margin-top: 30px;
 }

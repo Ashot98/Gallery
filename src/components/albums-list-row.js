@@ -23,7 +23,7 @@ class AlbumsListRow extends Component {
       <div className='albums-list-row'>
         <p>{this.props.album}</p>
         <div className='edit-and-remove'>
-          <Button>
+          <Button onClick={this.props.onChange}>
             <Glyphicon glyph='edit' />
           </Button>
           <Button onClick={this.onDelete}>
@@ -36,7 +36,8 @@ class AlbumsListRow extends Component {
 }
 
 AlbumsListRow.propTypes = {
-  album: PropTypes.string.isRequired
+  album: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
 export default connect(null, { deleteAlbum })(AlbumsListRow);
