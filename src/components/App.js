@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import AlbumsList from './albums-list';
+import MainPage from '../pages/main-page';
+import AlbumPage from '../pages/album-page';
 import './App.css';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>React Gallery</h1>
-        <AlbumsList />
+        <Route exact path='/' component={MainPage} />
+        <Route path='/albums/:name' component={AlbumPage} />
       </div>
     );
   }

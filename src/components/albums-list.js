@@ -3,7 +3,7 @@ import './albums-list.css';
 import { Button, FormControl, FormGroup, Modal } from 'react-bootstrap';
 import AlbumsListRow from './albums-list-row';
 import  { connect } from 'react-redux';
-import { getAlbums, addAlbum, changeAlbum } from '../actions/index';
+import { getAlbums, addAlbum, changeAlbum, deleteError } from '../actions/index';
 
 class AlbumList extends Component {
   constructor(props) {
@@ -43,6 +43,7 @@ class AlbumList extends Component {
   
   closeModal() {
     this.setState({ modalOpened: false });
+    this.props.deleteError();
   }
 
   handleAddNameChange(e) {
@@ -53,9 +54,9 @@ class AlbumList extends Component {
     this.setState({modalValue: e.target.value})
   }
 
-  handleEnter(e) {
+  handleEnter(e, cb) {
     if(e.keyCode === 13) {
-      this.addAlbum(e);
+      cb(e);
     }
   }
 
@@ -78,7 +79,7 @@ class AlbumList extends Component {
               value={this.state.albumName}
               placeholder='Add new album'
               onChange={this.handleAddNameChange}
-              onKeyDown={this.handleEnter} />
+              onKeyDown={e => this.handleEnter(e, this.addAlbum)} />
           </FormGroup>
           <Button bsStyle='primary' onClick={this.addAlbum} disabled={this.state.albumName === ''}>Add</Button>
         </div>
@@ -97,9 +98,9 @@ class AlbumList extends Component {
                 type='text'
                 value={this.state.modalValue}
                 onChange={this.handleChangeNameChange}
-                onKeyDown={this.handleEnter} />
+                onKeyDown={e => this.handleEnter(e, this.saveChanges)} />
             </FormGroup>
-            {modalUniqueError && <p className='unique-error'>{modalUniqueError}</p>}
+            {!!modalUniqueError && <p className='unique-error'>{modalUniqueError}</p>}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.closeModal}>Close</Button>
@@ -118,4 +119,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getAlbums, addAlbum, changeAlbum })(AlbumList);
+export default connect(mapStateToProps, { getAlbums, addAlbum, changeAlbum, deleteError })(AlbumList);

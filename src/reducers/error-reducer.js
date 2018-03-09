@@ -1,4 +1,4 @@
-import { ADD_ALBUM, CHANGE_ALBUM } from '../actions/types';
+import { ADD_ALBUM, CHANGE_ALBUM, DELETE_MODAL_ERROR } from '../actions/types';
 
 export default function(state = {}, action) {
   switch (action.type) {
@@ -16,6 +16,10 @@ export default function(state = {}, action) {
       return {...state, modalUniqueError: undefined};
       break;
   
+    case DELETE_MODAL_ERROR:
+      return {...state, modalUniqueError: undefined};
+      break;
+
     default:
       return state;
   }

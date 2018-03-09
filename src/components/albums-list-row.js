@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { deleteAlbum } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 import './albums-list-row.css'
 
@@ -21,7 +22,9 @@ class AlbumsListRow extends Component {
   render() {
     return (
       <div className='albums-list-row'>
-        <p>{this.props.album}</p>
+        <Link to={'/albums/'+this.props.album}>
+          <p>{this.props.album}</p>
+        </Link>
         <div className='edit-and-remove'>
           <Button onClick={this.props.onChange}>
             <Glyphicon glyph='edit' />
