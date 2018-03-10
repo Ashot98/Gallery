@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Glyphicon, Button, Grid, Row, Col } from 'react-bootstrap';
+import { Glyphicon, Button, Grid, Row, Col, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { getImages, saveImage } from '../actions/index';
+import { getImages, saveImage, saveInStore } from '../actions/index';
 import ImageItem from './image-item';
 import './album.css';
 
@@ -12,6 +12,10 @@ class Album extends Component {
     super(props);
 
     this.onImgAdd = this.onImgAdd.bind(this);
+    this.savePreview = this.savePreview.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+
+    this.state = {show: false}
   }
 
   componentDidMount() {
@@ -21,6 +25,18 @@ class Album extends Component {
 
       this.props.saveImage(this.props.name, image);
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ show: nextProps.images.status === 'fetched' });
+  }
+
+  hideModal() {
+    this.setState({show: false});
+  }
+
+  savePreview() {
+    this.props.saveInStore(this.props.name, this.props.images.newImg);
   }
 
   onImgAdd() {
@@ -41,9 +57,21 @@ class Album extends Component {
         {this.props.images.data.length === 0 && <p className='info'>There are no images to show</p>}
         <Grid>
           <Row>
-            {this.props.images.data.map((image) => <Col lg={4} md={4}><ImageItem key={image.id} image={image}/></Col>)}
+            {this.props.images.data.map((image) => <Col key={image.id} lg={3} md={3} sm={6} smOffset={0} xs={10} xsOffset={1}><ImageItem albumname={this.props.name} image={image}/></Col>)}
           </Row>
         </Grid>
+        <Modal show={this.props.images.status === "fetching"}>
+          <Modal.Body>Uplodaing image...</Modal.Body>
+        </Modal>
+        <Modal id='preview' show={ this.state.show}>
+          <Modal.Body>
+            {!!this.props.images.newImg && <img src={this.props.images.newImg.path}/>}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.hideModal}>Close</Button>
+            <Button onClick={this.savePreview} bsStyle='primary'>Save</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
@@ -59,4 +87,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getImages, saveImage })(Album);
+export default connect(mapStateToProps, { getImages, saveImage, saveInStore })(Album);

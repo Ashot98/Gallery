@@ -28,3 +28,18 @@
 .albums-list .content {
   margin-top: 30px;
 }
+
+
+/*Small devices */
+@media screen and (max-width: 992px) {
+  .albums-list {
+    width: 45%
+  }
+}
+
+/*Extra small devices*/
+@media screen and (max-width: 768px) {
+  .albums-list {
+    width: 60%;
+  }
+}

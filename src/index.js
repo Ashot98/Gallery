@@ -11,7 +11,7 @@ import { BrowserRouter } from 'react-router-dom';
 import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(reducers);
+export const store = createStore(reducers);
 
 if(!localStorage.gallery) {
   localStorage.gallery = JSON.stringify({ albums: [] });

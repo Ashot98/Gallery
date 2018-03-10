@@ -35,3 +35,28 @@
   font-size: 25px;
   color: #909090;
 }
+
+.album .row {
+  margin-top: 30px;
+}
+
+#preview .modal-dialog {
+  height: 600px;
+}
+
+#preview .modal-content {
+  height: 100%;
+}
+
+#preview .modal-body {
+  height: 530px;
+}
+
+#preview .modal-footer {
+  height: 50px;
+}
+
+#preview img {
+  width: 100%;
+  height: 100%;
+}

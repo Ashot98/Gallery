@@ -1,6 +1,46 @@
-.image-item button {
+.image-item {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.image-item img {
+  width: 100%;
+  min-height: 100%;
+}
+
+.image-item .btn-default {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  visibility: hidden;
+  border-radius: 50%;
+  padding: 3px;
+  font-size: 18px;
+  top: 3px;
+  right: 3px;
   z-index: 1;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: #a94442;
+}
+
+.image-item .btn-default:hover {
+  background: none;
+}
+
+
+.image-item .btn-default:focus {
+  outline: none;
+  color: #a94442;
+}
+
+.image-item:hover .btn-default {
+  visibility: visible;
+}
+
+@media screen and (max-width: 768px) {
+  .image-item {
+    height: 300px;
+  }
 }
